@@ -1,19 +1,18 @@
-openapi: "3.0.1"
+openapi: '3.0.1'
 
 info:
-  title: "User"
+  title: User
   version: "1"
-  description: User API
+  description: User resources
 
 servers:
-  - url: http://localhost:8080/api
-    description: Local server
+  - url: https://localhostL8080/api
+    description: local server
 
 paths:
-
   /user:
     post:
-      summary: Save User
+      summary: Save user
       operationId: saveUser
       requestBody:
         content:
@@ -28,33 +27,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserDTO'
 
-  /user/{id}:
-    get:
-      summary: Get User By Id
-      operationId: getUserById
-      parameters:
-        - name: id
-          in: path
-          description: Unique Id of an User
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserDTO'
-
 components:
   schemas:
     UserDTO:
       type: object
-      description: Data element for User
-      required:
-        - email
+      description: Data element for user
       properties:
         id:
           type: string
@@ -64,14 +41,6 @@ components:
         firstName:
           type: string
           minLength: 3
+          maxLength: 10
         lastName:
-          type: string
-
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
           type: string
